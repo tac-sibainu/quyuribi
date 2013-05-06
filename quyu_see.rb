@@ -32,10 +32,10 @@ client = UserStream.client
 counter = 0
 # １時間に１ツイートをするために…:00の時にツイートを行う
 t = Time.now
-if t.min == 0
-   while counter < 2
+#if t.min == 0
+   while counter < 1
        begin
-           bot = TwitterBot::Crawler.new('@Quyu_see', '@hexad_chrome')
+           bot = TwitterBot::Crawler.new('@Quyu_see', '@hexad_chrome ')
            bot.study
            bot.tweet
            bot.reply_to_mentions
@@ -44,23 +44,5 @@ if t.min == 0
            puts e
            counter += 1
        end
-    end
-    # sleepをしないとCPU負荷が高い
-    sleep 60
-    
-    else t.min == 30
-        while counter < 2
-            begin
-                bot = TwitterBot::Crawler.new('@Quyu_see', '@hexad_chrome')
-                bot.study
-                bot.tweet
-                bot.reply_to_mentions
-                break
-                rescue Exception => e
-                puts e
-                counter += 1
-            end
-        end
-        # sleepをしないとCPU負荷が高い
-        sleep 60
+       #    end
 end

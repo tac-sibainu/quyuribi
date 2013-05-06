@@ -84,7 +84,7 @@ module TwitterBot
                 def study
                     
                     Twitter.user_timeline(@src_screen_name, {
-                                          "count" => 100,
+                                          "count" => 1000,
                                           }).each {|status|
                         formatted = status.text.remove_uri
                         words = @splitter.split(formatted)
@@ -162,6 +162,7 @@ module TwitterBot
             
             def initialize()
                 @table = Array.new
+                
             end
             def study(words)
                 return if words.size < 3
@@ -174,7 +175,9 @@ module TwitterBot
                     array = Array.new
                     @table.each {|row|
                         array << row[1] if row[0] == key
+                        
                     }
+                    array.shuffle!
                     array.choice
                 end
                 def search2(key1, key2)
@@ -182,7 +185,9 @@ module TwitterBot
                     @table.each {|row|
                         array << row[2] if row[0] == key1 && row[1] == key2
                     }
+                                        array.shuffle!
                     array.choice
+                    
                 end
                 def build
                     array = Array.new
